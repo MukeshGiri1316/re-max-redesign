@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { FiChevronDown, FiCheck, FiSearch } from "react-icons/fi";
+import { FiChevronDown, FiSearch } from "react-icons/fi";
+import { IoMdCheckmark } from "react-icons/io";
 
 export const CustomSelect = ({
   options = [],
@@ -37,8 +38,12 @@ export const CustomSelect = ({
         onChange([...current, val]);
       }
     } else {
-      onChange(val);
-      setOpen(false);
+      // ✅ allow deselect in single mode too
+      if (value === val) {
+        onChange(null);
+      } else {
+        onChange(val);
+      }
     }
   };
 
@@ -65,7 +70,7 @@ export const CustomSelect = ({
       {/* Trigger */}
       <button
         onClick={() => setOpen((p) => !p)}
-        className="w-full flex items-center justify-between px-4 py-[11px] bg-bg border-[1.5px] border-border rounded-sm text-mid text-[13.5px] hover:border-red transition"
+        className="w-full flex items-center justify-between px-4 py-[11px] bg-[var(--color-bg)] border border-[var(--color-border)] rounded-[var(--radius-sm)] text-[var(--color-mid)] text-[13.5px] hover:border-[var(--color-red)] transition"
       >
         <span className="truncate text-left">{displayValue()}</span>
         <FiChevronDown
@@ -75,15 +80,15 @@ export const CustomSelect = ({
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute z-50 mt-2 w-full bg-surface border border-border rounded-md shadow-md overflow-hidden">
+        <div className="absolute z-50 mt-2 w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-md)] shadow-[var(--shadow-md)] overflow-hidden">
           {/* Search */}
-          <div className="flex items-center gap-2 px-3 py-2 border-b border-border bg-bg">
-            <FiSearch className="text-muted" />
+          <div className="flex items-center gap-2 px-3 py-2 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+            <FiSearch className="text-[var(--color-muted)]" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
-              className="w-full bg-transparent outline-none text-sm text-dark placeholder:text-muted"
+              className="w-full bg-transparent outline-none text-sm text-[var(--color-dark)] placeholder:text-[var(--color-muted)]"
             />
           </div>
 
@@ -97,22 +102,44 @@ export const CustomSelect = ({
                   <div
                     key={opt.value}
                     onClick={() => handleSelect(opt.value)}
-                    className={`flex items-center justify-between px-4 py-2.5 cursor-pointer text-sm transition
+                    className={`flex items-center gap-3 px-4 py-2.5 cursor-pointer text-sm transition
                       ${
                         selected
-                          ? "bg-red-soft text-red"
-                          : "text-mid hover:bg-bg"
+                          ? "bg-[var(--color-red-soft)]"
+                          : "hover:bg-[var(--color-bg)]"
                       }
                     `}
                   >
-                    <span>{opt.label}</span>
+                    {/* ✅ Checkbox */}
+                    <div
+                      className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition
+                        ${
+                          selected
+                            ? "border-red"
+                            : "border-border"
+                        }
+                      `}
+                    >
+                      {selected && (
+                        <IoMdCheckmark />
+                      )}
+                    </div>
 
-                    {selected && <FiCheck className="text-red" />}
+                    {/* Label */}
+                    <span
+                      className={`flex-1 ${
+                        selected
+                          ? "text-[var(--color-red)] font-medium"
+                          : "text-[var(--color-mid)]"
+                      }`}
+                    >
+                      {opt.label}
+                    </span>
                   </div>
                 );
               })
             ) : (
-              <div className="px-4 py-3 text-sm text-muted">
+              <div className="px-4 py-3 text-sm text-[var(--color-muted)]">
                 No results found
               </div>
             )}

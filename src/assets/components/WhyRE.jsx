@@ -71,19 +71,30 @@ const WHY_ITEMS = [
 
 export function WhyRemax() {
   return (
-    <section className="relative overflow-hidden bg-dark px-6 py-[88px]">
-      {/* Dot grid */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,#fff_1px,transparent_0)] bg-[size:30px_30px]" />
+    <section className="relative overflow-hidden px-6 py-[88px]">
+      {/* image */}
+      <img
+        src="/images/about.jpeg"
+        alt="about"
+        className="
+        absolute
+        -top-100 left-0
+        max-w-none
+        h-auto
+        pointer-events-none
+        select-none
+      "
+      />
 
-      {/* Red glow blob */}
-      <div className="absolute -top-24 -right-24 w-[320px] h-[320px] md:w-[480px] md:h-[480px] rounded-full bg-[radial-gradient(circle,rgba(204,0,0,0.12)_0%,transparent_70%)]" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-dark opacity-60" />
 
-      <div className="relative max-w-[1240px] mx-auto">
+      <div className="relative max-w-310 mx-auto">
         {/* HEADER */}
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10 md:mb-14">
             <div>
-              <div className="text-[11px] font-bold uppercase tracking-[0.12em] text-red font-body mb-2.5">
+              <div className="text-[11px] font-bold uppercase tracking-[0.12em] text-gold font-body mb-2.5">
                 Why RE/MAX Malta
               </div>
 
@@ -94,7 +105,7 @@ export function WhyRemax() {
 
             <a
               href="#contact"
-              className="flex items-center gap-2 text-red font-semibold text-sm md:text-base font-body border-b-[1.5px] border-red pb-[2px] w-fit"
+              className="flex items-center gap-2 text-gold font-semibold text-sm md:text-base font-body border-b-[1.5px] border-gold pb-[2px] w-fit"
             >
               Talk to an Agent <FiArrowRight size={15} />
             </a>
@@ -110,14 +121,13 @@ export function WhyRemax() {
                 className="
                   h-full
                   rounded-xl
-                  bg-white/5 backdrop-blur-lg
+                  bg-white/5 backdrop-blur-2xl
                   border border-white/10
                   px-5 py-6 md:px-6 md:py-7
-                  transition-all duration-300
-                  hover:border-red/40 hover:bg-white/10
+                  transition-all duration-300 hover:bg-white/10
                 "
               >
-                <div className="text-red mb-4">{w.icon}</div>
+                <div className="text-gold mb-4">{w.icon}</div>
 
                 <h3 className="font-display text-[18px] md:text-[19px] text-white mb-2 leading-[1.25]">
                   {w.title}
@@ -135,15 +145,15 @@ export function WhyRemax() {
         <Reveal delay={0.25}>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-10 md:mt-14">
             {[
-              "RE/MAX Global Network",
-              "Licensed Estate Agent Malta",
-              "40,000+ Properties",
-              "100+ Countries",
+              "10000+ Offices Around The World",
+              "20+ Successful Years",
+              "95000 Satisfied Clients",
+              "Global-Renowned Brand",
               "GDPR Compliant",
             ].map((b, i) => (
               <div key={i} className="flex items-center gap-2">
-                <FiCheckCircle size={14} className="text-red" />
-                <span className="text-[12.5px] md:text-[13px] text-white/60 font-body">
+                <FiCheckCircle size={14} className="text-gold" />
+                <span className="text-[12.5px] md:text-[13px] text-white font-body">
                   {b}
                 </span>
               </div>

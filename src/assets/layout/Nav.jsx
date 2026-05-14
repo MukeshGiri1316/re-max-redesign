@@ -1,68 +1,27 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import {
-  FiSearch,
-  FiMapPin,
-  FiHome,
-  FiArrowRight,
-  FiPhone,
-  FiMail,
-  FiCheckCircle,
-  FiShield,
-  FiAward,
-  FiUsers,
-  FiClock,
-  FiChevronDown,
-  FiChevronLeft,
-  FiChevronRight,
-  FiInstagram,
-  FiFacebook,
-  FiLinkedin,
-  FiYoutube,
-  FiStar,
-  FiHeart,
-  FiEye,
-  FiTrendingUp,
-  FiBell,
-  FiKey,
-  FiGrid,
-  FiMenu,
-  FiX,
-} from "react-icons/fi";
-import {
-  MdVerified,
-  MdLocationOn,
-  MdBed,
-  MdBathtub,
-  MdApartment,
-  MdVilla,
-  MdStorefront,
-} from "react-icons/md";
-import {
-  BsBuildings,
-  BsHouseHeart,
-  BsGrid3X3,
-  BsPersonCheck,
-} from "react-icons/bs";
+import { FiChevronDown, FiMenu, FiPhone, FiX } from "react-icons/fi";
 
 const NAV_LINKS = [
   {
     label: "Buy",
     sub: [
       "Buying a Property",
-      "Property for Sale",
-      "First-Time Buyers",
+      "Property for Sale in Gozo",
+      "Property Listings",
+      "Government Schemes",
       "Luxury Property",
       "Property Investments",
+      "Services",
     ],
   },
   {
     label: "Rent",
     sub: [
       "Rent a Property",
-      "List Your Property",
-      "Budget Rentals",
-      "Luxury Rentals",
+      "List Your Property for Rent",
+      "Budget Properties for Rent",
+      "Luxury Properties for Rent",
       "Holiday Rentals",
     ],
   },
@@ -71,22 +30,55 @@ const NAV_LINKS = [
     label: "Commercial",
     sub: [
       "Commercial Property",
-      "Buy Commercial",
-      "Rent Commercial",
+      "Buy Commercial Property",
+      "Rent Commercial Property",
       "Offices in Malta",
     ],
   },
-  { label: "Guides", sub: [] },
+  {
+    label: "Information",
+    sub: [
+      "About Malta",
+      "About Gozo",
+      "Property Types",
+      "Localities",
+      "Special Designated Areas",
+      "Blog",
+      "Guides",
+    ],
+  },
   {
     label: "About",
     sub: ["About RE/MAX Malta", "Our Agents", "Our Offices", "Join Us"],
   },
+  { label: "Franchise", sub: [] },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hovered, setHovered] = useState(null);
+  const [openMenu, setOpenMenu] = useState(null); // ✅ active dropdown
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 48);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  // ✅ lock scroll
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "auto";
+  }, [mobileOpen]);
+
+  const closeMenu = () => {
+    setMobileOpen(false);
+    setOpenMenu(null);
+  };
+
+  const toggleMenu = (label) => {
+    setOpenMenu(openMenu === label ? null : label);
+  };
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 48);
@@ -111,7 +103,7 @@ export function Navbar() {
 
       {/* Navbar */}
       <nav
-        className={`fixed top-6 left-0 right-0 z-50 transition-all duration-300
+        className={`fixed ${scrolled ? "top-0" : "top-6"} left-0 right-0 z-50 transition-all duration-200
         ${scrolled ? "bg-white shadow-md border-b border-gray-200" : "bg-transparent"}
         `}
       >
@@ -136,7 +128,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((item) => (
               <div
                 key={item.label}
@@ -156,12 +148,12 @@ export function Navbar() {
 
                 {/* Dropdown */}
                 {item.sub.length > 0 && hovered === item.label && (
-                  <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 min-w-[200px] py-2 z-50">
+                  <div className="absolute top-full left-0 bg-white rounded-lg shadow-lg border border-gray-200 min-w-[200px] py-2 z-50">
                     {item.sub.map((s) => (
                       <a
                         key={s}
                         href="#"
-                        className="block px-4 py-2 text-sm text-gray-600 hover:text-red-600 hover:bg-red-50 transition"
+                        className="block rounded-md px-4 py-2 text-sm text-gray-600 hover:text-red-600 hover:bg-red-50 transition"
                       >
                         {s}
                       </a>
@@ -174,31 +166,12 @@ export function Navbar() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            {/* Phone (desktop only) */}
-            <a
-              href="tel:+35627992796"
-              className={`hidden md:flex items-center gap-2 px-3 py-2 text-[10px] lg:text-sm font-semibold rounded-md border transition
-              ${scrolled ? "border-gray-300 text-black" : "border-white/40 text-white"}
-              `}
-            >
-              <FiPhone className="text-red-600" size={14} />
-              Call
-            </a>
-
-            {/* CTA */}
-            {/* <a
-              href="#contact"
-              className="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 rounded-md transition"
-            >
-              Book Viewing
-            </a> */}
-
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden text-white"
+              className={`lg:hidden duration-100 ${scrolled ? "text-dark" : "text-surface"}`}
             >
-              {mobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+              <FiMenu size={24} />
             </button>
           </div>
         </div>
@@ -206,45 +179,100 @@ export function Navbar() {
         {/* Mobile Menu */}
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="md:hidden bg-white shadow-lg border-t border-gray-200"
-            >
-              <div className="px-6 py-4 flex flex-col gap-3">
-                {NAV_LINKS.map((item) => (
-                  <div key={item.label}>
-                    <div className="font-semibold text-gray-800 py-2">
-                      {item.label}
-                    </div>
+            <>
+              {/* Overlay */}
+              <motion.div
+                onClick={closeMenu}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              />
 
-                    {item.sub.length > 0 && (
-                      <div className="pl-3 flex flex-col gap-1">
-                        {item.sub.map((s) => (
-                          <a
-                            key={s}
-                            href="#"
-                            className="text-sm text-gray-600 py-1 hover:text-red-600"
+              {/* Panel */}
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ ease: "easeOut" }}
+                className="fixed top-0 right-0 w-[88%] max-w-sm h-full 
+              bg-blue z-50 shadow-lg
+              flex flex-col"
+              >
+                {/* Header */}
+                <div className="flex items-center justify-end px-6 h-16 border-b border-border">
+                  <button onClick={closeMenu} className="text-surface">
+                    <FiX size={24} />
+                  </button>
+                </div>
+
+                {/* Links */}
+                <div className="flex-1 overflow-y-auto no-scrollbar px-0 py-6 space-y-3">
+                  {NAV_LINKS.map((item) => (
+                    <div key={item.label}>
+                      {/* Parent */}
+                      <button
+                        onClick={() =>
+                          item.sub.length ? toggleMenu(item.label) : closeMenu()
+                        }
+                        className="w-full flex items-center justify-between px-5 py-3 text-left"
+                      >
+                        <span className="text-lg font-semibold text-surface">
+                          {item.label}
+                        </span>
+
+                        {item.sub.length > 0 && (
+                          <FiChevronDown
+                            className={`transition-transform duration-300 text-border ${
+                              openMenu === item.label
+                                ? "rotate-180"
+                                : ""
+                            }`}
+                          />
+                        )}
+                      </button>
+
+                      {/* Submenu */}
+                      <AnimatePresence>
+                        {openMenu === item.label && item.sub.length > 0 && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
                           >
-                            {s}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                            <div className="px-5 py-2 space-y-1 border-l bg-surface border-border">
+                              {item.sub.map((s) => (
+                                <a
+                                  key={s}
+                                  href="#"
+                                  onClick={closeMenu}
+                                  className="block py-2 text-sm text-mid hover:text-[var(--color-red)] transition"
+                                >
+                                  {s}
+                                </a>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ))}
 
-                {/* Mobile phone */}
-                <a
-                  href="tel:+35627992796"
-                  className="flex items-center gap-2 mt-3 text-sm font-semibold text-gray-800"
-                >
-                  <FiPhone className="text-red-600" />
-                  +356 2799 2796
-                </a>
-              </div>
-            </motion.div>
+                  {/* Divider */}
+                  <div className="border-t border-border my-4" />
+
+                  {/* Contact */}
+                  <a
+                    onClick={closeMenu}
+                    className="flex items-center px-2 py-2 ms-5 bg-surface gap-3 text-mid font-medium border w-fit rounded-sm"
+                  >
+                    <FiPhone className="text-mid" />
+                    +356 2799 2796
+                  </a>
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </nav>

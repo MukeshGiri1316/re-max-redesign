@@ -1,73 +1,154 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import {
-  FiSearch, FiMapPin, FiHome, FiArrowRight, FiPhone, FiMail,
-  FiCheckCircle, FiShield, FiAward, FiUsers, FiClock, FiChevronDown,
-  FiChevronLeft, FiChevronRight, FiInstagram, FiFacebook,
-  FiLinkedin, FiYoutube, FiStar, FiHeart, FiEye,
-  FiTrendingUp, FiBell, FiKey, FiGrid, FiMenu, FiX
-} from "react-icons/fi";
-import { MdVerified, MdLocationOn, MdBed, MdBathtub, MdApartment, MdVilla, MdStorefront } from "react-icons/md";
-import { BsBuildings, BsHouseHeart, BsGrid3X3, BsPersonCheck } from "react-icons/bs";
-
+import { FiFacebook, FiInstagram, FiLinkedin, FiYoutube } from "react-icons/fi";
 
 export function Footer() {
   const COL = [
-    { title:"Buy", links:["Buying a Property","Property for Sale in Malta","Property for Sale in Gozo","Listings","Sole Agency Listings","Buyer Match"] },
-    { title:"Rent", links:["Rent a Property","List Your Property for Rent","Luxury Property for Rent","Budget Property for Rent","Holiday Rentals in Malta"] },
-    { title:"Popular Locations", links:["Valletta","Sliema & St Julians","North Region","Central Region","Portomaso","Tigne Point","Fort Cambridge","Kempinski Gozo"] },
-    { title:"Company", links:["About RE/MAX Malta","Our Agents","Our Offices","Join Us","Contact Us","Blog","Guides","Privacy Policy"] },
+    {
+      title: "Buy",
+      links: [
+        "Buying a Property",
+        "Property for Sale in Malta",
+        "Property for Sale in Gozo",
+        "Listings",
+        "Sole Agency Listings",
+        "Buyer Match",
+      ],
+    },
+    {
+      title: "Rent",
+      links: [
+        "Rent a Property",
+        "List Your Property for Rent",
+        "Luxury Property for Rent",
+        "Budget Property for Rent",
+        "Holiday Rentals in Malta",
+      ],
+    },
+    {
+      title: "Popular Locations",
+      links: [
+        "Valletta",
+        "Sliema & St Julians",
+        "North Region",
+        "Central Region",
+        "Portomaso",
+        "Tigne Point",
+        "Fort Cambridge",
+        "Kempinski Gozo",
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        "About RE/MAX Malta",
+        "Our Agents",
+        "Our Offices",
+        "Join Us",
+        "Contact Us",
+        "Blog",
+        "Guides",
+        "Privacy Policy",
+      ],
+    },
   ];
 
   return (
-    <footer style={{ background:"#0C0A08", padding:"56px 24px 28px" }}>
-      <div style={{ maxWidth:1240, margin:"0 auto" }}>
-        {/* Top strip */}
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:48, paddingBottom:32, borderBottom:"1px solid rgba(255,255,255,.07)", flexWrap:"wrap", gap:24 }}>
-          <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-            <div style={{ width:42, height:42, background:"var(--c-red)", borderRadius:9, display:"flex", alignItems:"center", justifyContent:"center" }}>
-              <span style={{ color:"#fff", fontFamily:"var(--f-display)", fontWeight:700, fontSize:20 }}>R</span>
+    <footer className="bg-[#0C0A08] px-5 md:px-6 pt-14 pb-8">
+      <div className="max-w-[1240px] mx-auto">
+        {/* TOP */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 pb-10 mb-10 border-b border-white/10">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-md bg-[var(--color-red)] flex items-center justify-center">
+              <span className="text-white font-display font-bold text-lg">
+                R
+              </span>
             </div>
             <div>
-              <div style={{ fontFamily:"var(--f-display)", fontSize:18, fontWeight:700, color:"#fff" }}>RE/MAX Malta</div>
-              <div style={{ fontSize:11, color:"rgba(255,255,255,.35)", letterSpacing:".07em" }}>Malta's Leading Real Estate Network</div>
+              <div className="text-white font-display font-bold text-[17px]">
+                RE/MAX Malta
+              </div>
+              <div className="text-[11px] text-white/40 tracking-[0.08em] font-body">
+                Malta's Leading Real Estate Network
+              </div>
             </div>
           </div>
-          <div style={{ display:"flex", gap:16, alignItems:"center" }}>
-            {[FiFacebook,FiInstagram,FiLinkedin,FiYoutube].map((Icon,i)=>(
-              <a key={i} href="#" style={{ width:36, height:36, borderRadius:"50%", border:"1px solid rgba(255,255,255,.12)", display:"flex", alignItems:"center", justifyContent:"center", color:"rgba(255,255,255,.4)", transition:"all .2s" }}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor="var(--c-red)";e.currentTarget.style.color="var(--c-red)";}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,.12)";e.currentTarget.style.color="rgba(255,255,255,.4)";}}>
-                <Icon size={16}/>
+
+          {/* Socials */}
+          <div className="flex items-center gap-3">
+            {[FiFacebook, FiInstagram, FiLinkedin, FiYoutube].map((Icon, i) => (
+              <a
+                key={i}
+                href="#"
+                className="
+                    w-9 h-9 rounded-full
+                    flex items-center justify-center
+                    border border-white/15
+                    text-white/50
+                    transition-all duration-200
+                    hover:border-[var(--color-red)]
+                    hover:text-[var(--color-red)]
+                    hover:bg-white/5
+                  "
+              >
+                <Icon size={15} />
               </a>
             ))}
           </div>
         </div>
 
-        {/* Columns */}
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(170px,1fr))", gap:32, marginBottom:48 }}>
-          {COL.map((c,i)=>(
+        {/* COLUMNS */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 mb-12">
+          {COL.map((c, i) => (
             <div key={i}>
-              <div style={{ fontSize:11, fontWeight:700, color:"var(--c-red)", textTransform:"uppercase", letterSpacing:".1em", marginBottom:16, fontFamily:"var(--f-body)" }}>{c.title}</div>
-              {c.links.map(l=>(
-                <a key={l} href="#" style={{ display:"block", fontSize:13, color:"rgba(255,255,255,.38)", marginBottom:10, fontFamily:"var(--f-body)", transition:"color .2s" }}
-                  onMouseEnter={e=>e.target.style.color="#fff"} onMouseLeave={e=>e.target.style.color="rgba(255,255,255,.38)"}>
-                  {l}
-                </a>
-              ))}
+              <div className="text-[11px] font-bold uppercase tracking-[0.12em] text-[var(--color-red)] mb-4 font-body">
+                {c.title}
+              </div>
+
+              <div className="flex flex-col gap-2.5">
+                {c.links.map((l) => (
+                  <a
+                    key={l}
+                    href="#"
+                    className="
+                      text-[13px]
+                      text-white/40
+                      font-body
+                      transition-colors duration-200
+                      hover:text-white
+                    "
+                  >
+                    {l}
+                  </a>
+                ))}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom bar */}
-        <div style={{ borderTop:"1px solid rgba(255,255,255,.06)", paddingTop:22, display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:12 }}>
-          <span style={{ fontSize:12, color:"rgba(255,255,255,.25)", fontFamily:"var(--f-body)" }}>
-            © 2026 RE/MAX Malta. All rights reserved. License PC-00442-22.
+        {/* BOTTOM */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-6 border-t border-white/10">
+          <span className="text-[12px] text-white/30 font-body">
+            © 2026 RE/MAX Malta. All rights reserved. License PC-*****-22.
           </span>
-          <div style={{ display:"flex", gap:20, flexWrap:"wrap" }}>
-            {["Privacy Policy","Terms & Conditions","Data Protection","Access Your Personal Data"].map(l=>(
-              <a key={l} href="#" style={{ fontSize:12, color:"rgba(255,255,255,.25)", fontFamily:"var(--f-body)", transition:"color .2s" }}
-                onMouseEnter={e=>e.target.style.color="rgba(255,255,255,.65)"} onMouseLeave={e=>e.target.style.color="rgba(255,255,255,.25)"}>
+
+          <div className="flex flex-wrap gap-4 md:gap-6">
+            {[
+              "Privacy Policy",
+              "Terms & Conditions",
+              "Data Protection",
+              "Access Your Personal Data",
+            ].map((l) => (
+              <a
+                key={l}
+                href="#"
+                className="
+                  text-[12px]
+                  text-white/30
+                  font-body
+                  transition-colors duration-200
+                  hover:text-white/70
+                "
+              >
                 {l}
               </a>
             ))}

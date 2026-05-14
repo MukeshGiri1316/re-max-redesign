@@ -34,7 +34,7 @@ const BEDS = ["Any", "1", "2", "3", "4", "5+"];
 
 export function SearchCard() {
   const [tab, setTab] = useState("Buy");
-  const [loc, setLoc] = useState("");
+  const [loc, setLoc] = useState([]);
   const [propType, setPropType] = useState([]);
   const [maxPrice, setMaxPrice] = useState("");
   const [minPrice, setMinPrice] = useState("");
@@ -73,9 +73,16 @@ export function SearchCard() {
             options={TYPES}
             onChange={setPropType}
             value={propType}
+            multiple={true}
           />
 
-          <CustomSelect placeholder="Location" options={LOCALITIES} onChange={setLoc} value={loc} />
+          <CustomSelect
+            placeholder="Location"
+            options={LOCALITIES}
+            onChange={setLoc}
+            value={loc}
+            multiple={true}
+          />
 
           <input
             value={minPrice}

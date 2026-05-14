@@ -44,9 +44,9 @@ export function Hero() {
           {/* Headline */}
           <Reveal delay={0.08}>
             <h1 className="font-display text-[clamp(32px,8vw,70px)] text-white leading-[1.08] max-w-[700px] font-semibold mb-4 md:mb-5 mx-auto">
-              Find Your Perfect
+              Find Your
               <br />
-              <span className="text-red italic">Malta Property</span>
+              <span className="text-gold italic">Perfect Property</span>
               <br />— Faster Than Ever.
             </h1>
           </Reveal>

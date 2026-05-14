@@ -16,10 +16,10 @@ const LISTINGS = [
     baths: 2,
     size: "185m²",
     price: "€1,250,000",
-    tag: "Sea View",
-    badge: "bg-surface text-gold",
+    tag: "For Rent",
+    badge: "bg-blue text-surface",
     views: 312,
-    image: "/images/property1.webp",
+    image: "/images/property13.jpg",
   },
   {
     id: 2,
@@ -29,10 +29,10 @@ const LISTINGS = [
     baths: 1,
     size: "98m²",
     price: "€695,000",
-    tag: "New Listing",
-    badge: "bg-surface text-red",
+    tag: "For Rent",
+    badge: "bg-blue text-surface",
     views: 219,
-    image: "/images/propert2.jpg",
+    image: "/images/property14.jpg",
   },
   {
     id: 3,
@@ -42,8 +42,8 @@ const LISTINGS = [
     baths: 3,
     size: "260m²",
     price: "€2,100,000",
-    tag: "Exclusive",
-    badge: "bg-surface text-blue",
+    tag: "For Rent",
+    badge: "bg-blue text-surface",
     views: 487,
     image: "/images/property3.webp",
   },
@@ -55,8 +55,8 @@ const LISTINGS = [
     baths: 2,
     size: "130m²",
     price: "€480,000",
-    tag: "High Demand",
-    badge: "bg-surface text-urgent",
+    tag: "For Rent",
+    badge: "bg-blue text-surface",
     views: 178,
     image: "/images/property4.webp",
   },
@@ -68,10 +68,10 @@ const LISTINGS = [
     baths: 1,
     size: "52m²",
     price: "€365,000",
-    tag: "New Listing",
-    badge: "bg-surface text-red-d",
+    tag: "For Rent",
+    badge: "bg-blue text-surface",
     views: 143,
-    image: "/images/property5.jpg",
+    image: "/images/property15.jpg",
   },
   {
     id: 6,
@@ -81,16 +81,16 @@ const LISTINGS = [
     baths: 4,
     size: "320m²",
     price: "€3,200,000",
-    tag: "Exclusive",
-    badge: "bg-surface text-blue",
+    tag: "For Rent",
+    badge: "bg-blue text-surface",
     views: 521,
-    image: "/images/property6.webp",
+    image: "/images/property7.jpg",
   },
 ];
 
 const LOOP_LISTINGS = [...LISTINGS, ...LISTINGS];
 
-export function FeaturedListings() {
+export function PropertyRent() {
   const [saved, setSaved] = useState([]);
 
   const containerRef = useRef(null);
@@ -197,11 +197,11 @@ export function FeaturedListings() {
         <Reveal>
           <div className="flex flex-wrap justify-between items-end gap-4 mb-10">
             <div>
-              <div className="text-[11px] font-semibold tracking-widest uppercase text-red mb-2">
-                Handpicked for You
+              <div className="text-[11px] font-semibold tracking-widest uppercase text-[var(--color-red)] mb-2">
+                Rent at Your Favourite Place
               </div>
-              <h2 className="text-[clamp(26px,4vw,42px)] font-semibold text-dark leading-tight">
-                <span className="text-blue italic">Featured Properties</span> <br /> Across Malta & Gozo
+              <h2 className="text-[clamp(26px,4vw,42px)] font-semibold text-[var(--color-dark)] leading-tight">
+                Property for Rent <br /> Across Malta & Gozo
               </h2>
             </div>
 
@@ -220,13 +220,11 @@ export function FeaturedListings() {
           <div
             ref={containerRef}
             className="flex gap-6 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing"
-
             // MOUSE
             onMouseDown={onDown}
             onMouseMove={onMove}
             onMouseUp={onUp}
             onMouseLeave={onUp}
-
             // TOUCH ✅
             onTouchStart={(e) => {
               isDown.current = true;
@@ -275,7 +273,7 @@ export function FeaturedListings() {
 
                     <img
                       src={l.image}
-                      className="w-full h-full object-cover group-hover:scale-105 sm:group-hover:scale-110 duration-300"
+                      className="w-full h-full object-fill group-hover:scale-105 sm:group-hover:scale-110 duration-300"
                     />
 
                     <span
