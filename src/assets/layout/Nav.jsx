@@ -109,7 +109,7 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-3">
             <div className="w-10 h-10 bg-red-600 rounded-md flex items-center justify-center">
               <span className="text-white font-bold text-lg">R</span>
             </div>
@@ -117,7 +117,7 @@ export function Navbar() {
               <div
                 className={`font-semibold text-sm leading-tight ${scrolled ? "text-black" : "text-white"}`}
               >
-                RE/MAX Malta
+                Real Estate Malta
               </div>
               <div
                 className={`text-[10px] uppercase tracking-wider ${scrolled ? "text-gray-500" : "text-white/60"}`}
@@ -165,11 +165,11 @@ export function Navbar() {
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-3">
+          <div className="flex lg:hidden items-center gap-3">
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden duration-100 ${scrolled ? "text-dark" : "text-surface"}`}
+              className={`duration-100 ${scrolled ? "text-dark" : "text-surface"}`}
             >
               <FiMenu size={24} />
             </button>
@@ -268,7 +268,7 @@ export function Navbar() {
                     className="flex items-center px-2 py-2 ms-5 bg-surface gap-3 text-mid font-medium border w-fit rounded-sm"
                   >
                     <FiPhone className="text-mid" />
-                    +356 2799 2796
+                    +398 7654 3210
                   </a>
                 </div>
               </motion.div>

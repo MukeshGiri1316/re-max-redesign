@@ -39,7 +39,7 @@ export function Footer() {
     {
       title: "Company",
       links: [
-        "About RE/MAX Malta",
+        "About Agency",
         "Our Agents",
         "Our Offices",
         "Join Us",
@@ -65,7 +65,7 @@ export function Footer() {
             </div>
             <div>
               <div className="text-white font-display font-bold text-[17px]">
-                RE/MAX Malta
+                Real Estate Malta
               </div>
               <div className="text-[11px] text-white/40 tracking-[0.08em] font-body">
                 Malta's Leading Real Estate Network
@@ -128,7 +128,7 @@ export function Footer() {
         {/* BOTTOM */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-6 border-t border-white/10">
           <span className="text-[12px] text-white/30 font-body">
-            © 2026 RE/MAX Malta. All rights reserved. License PC-*****-22.
+            © 2026 RE Malta. All rights reserved. License PC-*****-22.
           </span>
 
           <div className="flex flex-wrap gap-4 md:gap-6">

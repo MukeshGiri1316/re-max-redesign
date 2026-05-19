@@ -91,9 +91,9 @@ export function ContactCTA() {
             {[
               {
                 icon: <FiPhone size={16} />,
-                text: "+356 2799 2796  ·  Mon–Sat 9:00–17:00",
+                text: "+359 8765 4321  ·  Mon–Sat 9:00–17:00",
               },
-              { icon: <FiMail size={16} />, text: "info@remax-malta.com" },
+              { icon: <FiMail size={16} />, text: "example@gmail.com" },
               {
                 icon: <FiMapPin size={16} />,
                 text: "58 Tigne Seafront, Sliema, Malta",

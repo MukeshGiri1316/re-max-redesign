@@ -98,7 +98,7 @@ export function Testimonials() {
             <h2 className="font-display text-[clamp(26px,4vw,42px)] text-dark">
               Thousands of Clients
               <br />
-              Trust RE/MAX Malta
+              Trust Agency
             </h2>
 
             {/* Rating */}

@@ -55,7 +55,7 @@ const WHY_ITEMS = [
   {
     icon: <FiAward size={30} />,
     title: "Malta's #1 Real Estate Brand",
-    desc: "RE/MAX Malta — the country's leading network with 250+ professional Sales & Letting Associates.",
+    desc: "The country's leading network with 250+ professional Sales & Letting Associates.",
   },
   {
     icon: <FiShield size={30} />,
@@ -74,13 +74,15 @@ export function WhyRemax() {
     <section className="relative overflow-hidden px-6 py-[88px]">
       {/* image */}
       <img
-        src="/images/about.jpeg"
+        src="/images/about.jpg"
         alt="about"
         className="
+        object-cover
+        w-full
         absolute
-        -top-100 left-0
+        top-0 left-0
         max-w-none
-        h-auto
+        h-full
         pointer-events-none
         select-none
       "
@@ -95,7 +97,7 @@ export function WhyRemax() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10 md:mb-14">
             <div>
               <div className="text-[11px] font-bold uppercase tracking-[0.12em] text-gold font-body mb-2.5">
-                Why RE/MAX Malta
+                Why This Agency
               </div>
 
               <h2 className="font-display text-[clamp(26px,4vw,46px)] text-white leading-[1.12] max-w-[520px]">
